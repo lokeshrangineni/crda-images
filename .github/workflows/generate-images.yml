@@ -1,6 +1,9 @@
 name: Generate Images
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 env:
@@ -16,7 +19,7 @@ jobs:
         versions:
           - ecosystem: python
             package:  python3
-            tag: python3
+            tag: python37
             path: Dockerfiles/Dockerfile.python
           - ecosystem: python
             package:  python36
