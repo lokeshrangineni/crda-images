@@ -10,6 +10,11 @@ env:
   REGISTRY: ghcr.io
   ORG: fabric8-analytics
   REPO: crda-images
+  IMAGE_PYTHON : crda-python 
+  IMAGE_NPM : crda-npm 
+  IMAGE_GO: crda-go
+  IMAGE_MVN: crda-mvn
+
 
 jobs:
   Build-images:
@@ -19,15 +24,15 @@ jobs:
         versions:
           - ecosystem: python
             package:  python3
-            tag: python37
+            tag: ${{env.IMAGE_PYTHON}}:3.7
             path: Dockerfiles/Dockerfile.python
           - ecosystem: python
             package:  python36
-            tag: python36
+            tag: ${{env.IMAGE_PYTHON}}:3.6
             path: Dockerfiles/Dockerfile.python
           - ecosystem: python
             package:  python38
-            tag: python38
+            tag: ${{env.IMAGE_PYTHON}}:3.8
             path: Dockerfiles/Dockerfile.python
     steps:
     - uses: actions/checkout@v2
@@ -49,5 +54,5 @@ jobs:
         context: .
         file: ./${{ matrix.versions.path }}
         push: true
-        tags: ${{ env.REGISTRY }}/${{ env.ORG }}/crda:${{ matrix.versions.tag }}
+        tags: ${{ env.REGISTRY }}/${{ env.ORG }}/${{ matrix.versions.tag }}
         build-args: ECOSYSTEM_VERSION=${{ matrix.versions.package}}
