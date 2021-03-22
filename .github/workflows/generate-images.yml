@@ -16,7 +16,7 @@ jobs:
         versions:
           - ecosystem: python
             package:  python3
-            tag: python3
+            tag: python37
             path: Dockerfiles/Dockerfile.python
           - ecosystem: python
             package:  python36
