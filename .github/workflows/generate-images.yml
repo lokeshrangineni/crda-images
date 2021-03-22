@@ -1,6 +1,9 @@
 name: Generate Images
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 env:
