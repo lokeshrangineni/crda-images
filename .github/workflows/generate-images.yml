@@ -24,15 +24,15 @@ jobs:
         versions:
           - ecosystem: python
             package:  python3
-            tag: ${{env.IMAGE_PYTHON}}:3.7
+            tag: ${{ env.IMAGE_PYTHON }}:3.7
             path: Dockerfiles/Dockerfile.python
           - ecosystem: python
             package:  python36
-            tag: ${{env.IMAGE_PYTHON}}:3.6
+            tag: ${{ env.IMAGE_PYTHON }}:3.6
             path: Dockerfiles/Dockerfile.python
           - ecosystem: python
             package:  python38
-            tag: ${{env.IMAGE_PYTHON}}:3.8
+            tag: ${ {env.IMAGE_PYTHON }}:3.8
             path: Dockerfiles/Dockerfile.python
     steps:
     - uses: actions/checkout@v2
