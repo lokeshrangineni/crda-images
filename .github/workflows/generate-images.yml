@@ -16,15 +16,15 @@ jobs:
         versions:
           - ecosystem: python
             package:  python3
-            tag: crda/python3
+            tag: python3
             path: Dockerfiles/Dockerfile.python
           - ecosystem: python
             package:  python36
-            tag: crda/python36
+            tag: python36
             path: Dockerfiles/Dockerfile.python
           - ecosystem: python
             package:  python38
-            tag: crda/python38
+            tag: python38
             path: Dockerfiles/Dockerfile.python
     steps:
     - uses: actions/checkout@v2
@@ -46,5 +46,5 @@ jobs:
         context: .
         file: ./${{ matrix.versions.path }}
         push: true
-        tags: ${{ env.REGISTRY }}/${{ env.ORG }}/${{ env.REPO }}/${{ matrix.versions.tag }}
+        tags: ${{ env.REGISTRY }}/${{ env.ORG }}/crda:${{ matrix.versions.tag }}
         build-args: ECOSYSTEM_VERSION=${{ matrix.versions.package}}
