@@ -11,12 +11,5 @@ ENV AUTH_TOKEN=''
 ENV CRDA_KEY=''
 ENV HOST=''
 
-RUN mkdir -p crda_dir
-
-COPY scripts/python/crda.sh /crda_dir
-RUN chmod +x /crda_dir/crda.sh
-
-COPY entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT /entrypoint.sh
+COPY scripts/python/crda.sh /
+RUN chmod +x /crda.sh
