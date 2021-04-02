@@ -1,21 +1,22 @@
 #!/bin/sh
 
-while getopts ":m:o:p:" opt; do
-  case $opt in
-    m) manifest-file-path="$OPTARG";;
-    o) output-file-path="$OPTARG";;
-    p) pkg-installation-directory-path="$OPTARG";;
-    \?) echo "Invalid option -$OPTARG" >&2
-    ;;
-  esac
-done
+# Create config file for CRDA CLI
+mkdir -p /root/.crda
+touch /root/.crda/config.yaml
+echo auth_token:${AUTH_TOKEN} >> /root/.crda/config.yaml
+echo crda_key:${CRDA_KEY} >> /root/.crda/config.yaml
+echo host:${HOST} >> /root/.crda/config.yaml
+
+manifest_file_path="$1"
+output_file_path="$2"
+pkg_installation_directory_path="$3"
 
 # Setting the package installation directory path
-export PYTHONPATH=pkg-installation-directory-path
+export PYTHONPATH=$pkg_installation_directory_path
 printf "Analysing the stack. Please wait..\n\n"
 
 # Getting stack analysis report using CRDA CLI.
-result=$(crda analyse manifest-file-path -j)
+result=$(crda analyse $manifest_file_path -j)
 exit_code=$?
 
 if [ $exit_code == 1 ]
@@ -23,7 +24,7 @@ then
   # In case of failure save only exit code into output file.
   jq -n {} | \
   jq --arg exit_code "$exit_code" '. + {exit_code: $exit_code}' > \
-  output-file-path
+  $output_file_path
 else
   # In case of success print details from report into console
   printf "=%.0s" {1..40}
@@ -47,7 +48,7 @@ else
   jq -n {} | \
   jq --argjson result "$result" '. + {report: $result}' | \
   jq --arg exit_code "$exit_code" '. + {exit_code: $exit_code}' > \
-  output-file-path
+  $output_file_path
 fi
 
-printf "\nReport is saved into file: output-file-path"
+printf "\nReport is saved into file: $output_file_path"
