@@ -7,10 +7,9 @@ echo auth_token:${AUTH_TOKEN} >> /root/.crda/config.yaml
 echo crda_key:${CRDA_KEY} >> /root/.crda/config.yaml
 echo host:${HOST} >> /root/.crda/config.yaml
 
-work_dir=$(pwd)
-manifest_file_path=$work_dir/"$1"
-output_file_path=$work_dir/"$2"
-pkg_installation_directory_path=$work_dir/"$3"
+manifest_file_path="$1"
+output_file_path="$2"
+pkg_installation_directory_path="$3"
 
 # Setting the package installation directory path
 export PYTHONPATH=$pkg_installation_directory_path
