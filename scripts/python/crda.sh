@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # Create config file for CRDA CLI
-mkdir -p /root/.crda
-touch /root/.crda/config.yaml
-echo auth_token:${AUTH_TOKEN} >> /root/.crda/config.yaml
-echo crda_key:${CRDA_KEY} >> /root/.crda/config.yaml
-echo host:${HOST} >> /root/.crda/config.yaml
+mkdir -p $HOME/.crda
+touch $HOME/.crda/config.yaml
+echo auth_token: ${AUTH_TOKEN} >> $HOME/.crda/config.yaml
+echo crda_key: ${CRDA_KEY} >> $HOME/.crda/config.yaml
+echo host: ${HOST} >> $HOME/.crda/config.yaml
 
 manifest_file_path="$1"
 output_file_path="$2"
