@@ -5,18 +5,26 @@ mkdir -p $HOME/.crda
 touch $HOME/.crda/config.yaml
 echo auth_token: ${AUTH_TOKEN} >> $HOME/.crda/config.yaml
 echo crda_key: ${CRDA_KEY} >> $HOME/.crda/config.yaml
+echo consent_telemetry: ${CONSENT_TELEMETRY} >> $HOME/.crda/config.yaml
 echo host: ${HOST} >> $HOME/.crda/config.yaml
 
 manifest_file_path="$1"
 output_file_path="$2"
 pkg_installation_directory_path="$3"
+consumer="$4"
 
 # Setting the package installation directory path
 export PYTHONPATH=$pkg_installation_directory_path
 printf "Analysing the stack. Please wait..\n\n"
 
 # Getting stack analysis report using CRDA CLI.
-result=$(crda analyse $manifest_file_path -j)
+if [ -z "$consumer" ]
+then
+  result=$(crda analyse $manifest_file_path -j)
+else
+  result=$(crda analyse $manifest_file_path -j --client $consumer)
+fi
+
 exit_code=$?
 
 if [ $exit_code == 1 ]
