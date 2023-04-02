@@ -7,10 +7,6 @@ RUN rpm -i https://github.com/fabric8-analytics/cli-tools/releases/download/v0.2
 
 RUN yum install jq -y
 
-ENV AUTH_TOKEN=''
-ENV CRDA_KEY=''
-ENV HOST=''
-ENV CONSENT_TELEMETRY='false'
-
+# Make sure to set the proper environment variables - AUTH_TOKEN, CRDA_KEY, HOST, CONSENT_TELEMETRY, below script needs them.
 COPY scripts/maven/crda.sh /
 RUN chmod +x /crda.sh

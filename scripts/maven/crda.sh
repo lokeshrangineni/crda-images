@@ -10,11 +10,8 @@ echo host: ${HOST} >> $HOME/.crda/config.yaml
 
 manifest_file_path="$1"
 output_file_path="$2"
-pkg_installation_directory_path="$3"
-consumer="$4"
+consumer="$3"
 
-# Setting the package installation directory path
-export MAVEN_PATH=$pkg_installation_directory_path
 printf "Analysing the stack. Please wait..\n\n"
 
 # Getting stack analysis report using CRDA CLI.
