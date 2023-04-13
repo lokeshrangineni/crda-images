@@ -5,8 +5,14 @@ mkdir -p $HOME/.crda
 touch $HOME/.crda/config.yaml
 echo auth_token: ${AUTH_TOKEN} >> $HOME/.crda/config.yaml
 echo crda_key: ${CRDA_KEY} >> $HOME/.crda/config.yaml
-echo consent_telemetry: ${CONSENT_TELEMETRY} >> $HOME/.crda/config.yaml
 echo host: ${HOST} >> $HOME/.crda/config.yaml
+
+if [ "$CONSENT_TELEMETRY" == "true" ]
+then
+crda config set consent_telemetry true
+else
+crda config set consent_telemetry false
+fi
 
 manifest_file_path="$1"
 output_file_path="$2"
