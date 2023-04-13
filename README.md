@@ -14,9 +14,9 @@ python        | python3.7     |  crda-python                              | 3.7 
 #### creating CRDA Maven image and publishing to the repo.
 
 ```
-podman build -f ./Dockerfiles/Dockerfile.maven . -t crda-maven:3.0 
-podman tag localhost/crda-maven:3.0 quay.io/lrangine/crda-maven:3.0
-podman push quay.io/lrangine/crda-maven:3.0
+podman build -f ./Dockerfiles/Dockerfile.maven . -t crda-maven:4.0 
+podman tag localhost/crda-maven:4.0 quay.io/lrangine/crda-maven:4.0
+podman push quay.io/lrangine/crda-maven:4.0
 ```
 
 ### Running CRDA scan on a maven project.
